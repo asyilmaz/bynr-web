@@ -1,0 +1,5 @@
+636906389566634449
+SiteName#Boyner.com.tr#String
+IsBasketEnabled#true#Boolean
+MaxItemCount#50#Int
+Price#654.250#Double

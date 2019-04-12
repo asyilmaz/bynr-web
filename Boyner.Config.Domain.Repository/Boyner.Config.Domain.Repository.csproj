@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Boyner.Config.Infrastructure\Boyner.Config.Infrastructure.csproj" />
+    <ProjectReference Include="..\Boyner.Config.Model\Boyner.Config.Model.csproj" />
+  </ItemGroup>
+
+</Project>

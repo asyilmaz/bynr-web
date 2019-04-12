@@ -1,0 +1,59 @@
+﻿@using Boyner.Config.Model;
+@model ConfigModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-sm-3">
+        <input type="button" class="btn-success" id="btn_Back" value="Back" />
+    </div>
+</div>
+<div id="divCreate" class="">
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { id = "createConfigForm" }))
+    {
+        @Html.ValidationSummary(true)
+        <header><h2>Create Configuration</h2></header>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Name", new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type, "Type", new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Type)
+                @Html.ValidationMessageFor(model => model.Type)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Value, "Value", new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Value)
+                @Html.ValidationMessageFor(model => model.Value)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplicationName, "ApplicationName", new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.ApplicationName)
+                @Html.ValidationMessageFor(model => model.ApplicationName)
+            </div>
+        </div>
+        <footer>
+            <button type="submit" class="button">Save</button>
+        </footer>
+    }
+</div>
+
+<script type="text/javascript">
+        $('form').on('submit', function () {
+        $('.button').attr('disabled', true);
+    });
+
+    $('#btn_Back').click(function () {
+        window.history.back();
+    });
+</script>

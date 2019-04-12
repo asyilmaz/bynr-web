@@ -1,0 +1,93 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-sm-3">
+        <input type="button" class="btn-success" id="btn_New" value="New" />
+        <input type="button" class="btn-primary" id="btn_Edit" value="Edit" />
+        <input type="button" class="btn-danger" id="btn_Delete" value="Sil" />
+    </div>
+    <div class="col-sm-3">
+    <a asp-controller="Home" asp-action="Test">Test Values</a>    
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div id="divTable">
+            <table id="tableConfigList" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Id</th>
+                        <th>Adı</th>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>ApplicationName</th>
+                        <th>IsActive</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.Configs)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@item.Id.ToString()</td>
+                            <td>@item.Name</td>
+                            <td>@item.Type</td>
+                            <td>@item.Value</td>
+                            <td>@item.ApplicationName</td>
+                            <td>@(item.IsActive ? "Aktif" : "Aktif Değil")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var table;
+    $(document).ready(function () {
+        table = $('#tableConfigList').DataTable({
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'os',
+                selector: 'td:first-child'
+            },
+            "order": [[1, "asc"]]
+        });
+    });
+
+    $('#btn_New').click(function () {
+        window.location.href = '@Url.Action("Create", 0)';
+    });
+
+    $('#btn_Edit').click(function () {
+        var selectedRows = table.rows({ selected: true });
+        var rowIndex = selectedRows[0][0];
+        if (rowIndex >= 0) {
+            var id = table.rows(rowIndex).data()[0][1];
+            window.location.href = '@Url.Action("Update")' + '/' + id;
+        }
+    });
+
+    $('#btn_Delete').click(function () {
+        var selectedRows = table.rows({ selected: true });
+        var rowIndex = selectedRows[0][0];
+        if (rowIndex >= 0) {
+            var id = table.rows(rowIndex).data()[0][1];
+            BoynerJS.ConfirmDialog("Delete Configuration", "Are you sure?", function () {
+                window.location.href = '@Url.Action("Delete")' + '/' + id;
+            })
+        }
+
+    });
+
+</script>
