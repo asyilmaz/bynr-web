@@ -22,6 +22,7 @@
   <ItemGroup>
     <Reference Include="Boyner.Configurator">
       <HintPath>..\..\Boyner.Configurator\Boyner.Configurator\bin\Debug\netcoreapp2.1\Boyner.Configurator.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
